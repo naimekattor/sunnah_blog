@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id       String  @id @default(uuid()) 
+  name     String?
+  email    String  @unique
+  password String
+  role     Role    @default(USER)
+  approved Post[]  @relation("ApprovedBy")
+  posts    Post[]
+}
+
+model Post {
+  id           String     @id @default(uuid()) 
+  title        String
+  content      String
+  coverImage   String?
+  status       PostStatus @default(PENDING)
+  authorId     String // This will now correctly be a UUID
+  approvedById String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  approvedBy   User?      @relation("ApprovedBy", fields: [approvedById], references: [id])
+  author       User       @relation(fields: [authorId], references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PostStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
