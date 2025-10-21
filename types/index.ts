@@ -1,5 +1,6 @@
 // types/index.ts
 export interface Post {
+  id: string;
   slug: string;
   title: string;
   excerpt: string;
@@ -9,4 +10,5 @@ export interface Post {
   date: string;
   category: string;
   coverImage: string;
+  name:string;
 }

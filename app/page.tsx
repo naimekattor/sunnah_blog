@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import PostCard from "@/components/PostCard";
-import { Post } from "../../types/index";
+import { Post } from "@/types/index";
 
 async function getPosts() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, {

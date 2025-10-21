@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import Tiptap from "@/components/Tiptap";
 import dynamic from "next/dynamic";
 const Tiptap = dynamic(() => import("@/components/Tiptap"), { ssr: false });
 
@@ -69,9 +68,10 @@ export default function DashboardPage() {
       setContent("");
       setFile(null);
       setCoverImage(null);
-    } catch (error: Error) {
+    } catch (error: unknown) {
       console.error("Create Post Error:", error);
-      alert(`Error: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      alert(`Error: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }

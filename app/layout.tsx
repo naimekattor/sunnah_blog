@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Providers from "@/components/Providers";
-// @ts-expect-error: Allow side-effect import of global CSS without type declarations
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ToastContainer } from "react-toastify";

@@ -27,7 +27,7 @@ export default function PostCard({ post }: { post: Post }) {
           </Link>
         </h3>
         <p className="text-sm text-gray-500 mb-4">
-          {post.author?.name} {post.date}
+          {post?.name} {post.date}
         </p>
         <p className="text-gray-700 mb-4">{post.excerpt}</p>
         <Link
