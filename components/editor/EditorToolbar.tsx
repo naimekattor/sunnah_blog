@@ -76,7 +76,7 @@ const BlockquoteButton = ({ editor }: { editor: Editor | null }) => {
     <ToolbarButton
       onClick={() => editor.chain().focus().toggleBlockquote().run()}
     >
-      "
+      &quot;
     </ToolbarButton>
   );
 };

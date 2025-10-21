@@ -5,7 +5,16 @@ import { useSession } from "next-auth/react";
 
 export default function AdminPage() {
   const { data: session } = useSession();
-  const [pendingPosts, setPendingPosts] = useState([]);
+  type Post = {
+    id: string;
+    title: string;
+    content: string;
+    status: "PENDING" | "APPROVED" | "REJECTED" | string;
+    authorId?: string;
+    createdAt?: string;
+  };
+
+  const [pendingPosts, setPendingPosts] = useState<Post[]>([]);
 
   async function fetchPending() {
     const res = await fetch("/api/posts");
@@ -18,7 +27,9 @@ export default function AdminPage() {
     }
 
     setPendingPosts(
-      Array.isArray(data) ? data.filter((p: any) => p.status === "PENDING") : []
+      Array.isArray(data)
+        ? (data as Post[]).filter((p: Post) => p.status === "PENDING")
+        : []
     );
   }
 
@@ -38,7 +49,7 @@ export default function AdminPage() {
       <h1 className="text-2xl font-bold mb-4">Pending Posts</h1>
       {pendingPosts.length === 0 && <p>No pending posts.</p>}
       <div className="space-y-3">
-        {pendingPosts.map((post: any) => (
+        {pendingPosts.map((post: Post) => (
           <div key={post.id} className="bg-white p-4 rounded shadow">
             <h2 className="text-xl font-bold">{post.title}</h2>
             <p>{post.content}</p>

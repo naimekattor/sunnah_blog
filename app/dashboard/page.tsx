@@ -69,7 +69,7 @@ export default function DashboardPage() {
       setContent("");
       setFile(null);
       setCoverImage(null);
-    } catch (error: any) {
+    } catch (error: Error) {
       console.error("Create Post Error:", error);
       alert(`Error: ${error.message}`);
     } finally {
