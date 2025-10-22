@@ -3,7 +3,8 @@ import PostCard from "@/components/PostCard";
 import { Post } from "@/types/index";
 
 async function getPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, {
+  const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/posts`, {
     cache: "no-store",
   });
   console.log(res);
