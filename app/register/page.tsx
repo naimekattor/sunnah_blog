@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -8,7 +8,9 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("USER");
-  const [toast, setToast] = useState<{ message: string; type: string } | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: string } | null>(
+    null
+  );
   const router = useRouter();
 
   const showToast = (message: string, type = "success") => {
@@ -54,7 +56,10 @@ export default function RegisterPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow w-96 space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-8 rounded-lg shadow w-96 space-y-4"
+      >
         <input
           type="text"
           placeholder="Full Name"

@@ -5,12 +5,9 @@ export default async function BlogPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/posts/approve/${id}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`/api/posts/approve/${id}`, {
+    cache: "no-store",
+  });
   const post = await res.json();
 
   const sanitizedContent = DOMPurify.sanitize(post.content || "");
